@@ -15,20 +15,26 @@ public class PlayerLateralMovementController : MonoBehaviour
     private bool jump = false;
     Vector2 inputY;
 
+    //Informacion para salto
+    private bool isGrounded = false;
+
     //Referencias
     Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         inputX = Input.GetAxis("Horizontal");
         //Si se pulsa la tecla de espacio
-        if (Input.GetKeyDown("space") && rb.position.y <= 0f)
+        if (Input.GetKeyDown("space") && isGrounded)
         {
             jump = true;
         //    Debug.Log("Estoy pulsando espacio");
@@ -42,14 +48,41 @@ public class PlayerLateralMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        rb.velocity = new Vector2(inputX * velocityX, rb.velocity.y);
         //TODO: Flip Sprite
-
+        Vector2 aux = spriteRenderer.transform.localScale;
+        if (rb.velocity.x > 0) aux.x = Mathf.Abs(aux.x);
+        else if (rb.velocity.x < 0) aux.x = -Mathf.Abs(aux.x);
+        spriteRenderer.transform.localScale = aux;
         //Aplicamos el salto
-        if (jump)
+        if (IsGrounded() && jump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jump = false;
         }
-        rb.velocity = new Vector2(inputX * velocityX, rb.velocity.y);
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    public bool IsGrounded()
+    {
+        //var hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
+        //if (!hit) return false;
+        return Physics2D.Raycast(transform.position, Vector2.down, 2.5f);
+
     }
 }
