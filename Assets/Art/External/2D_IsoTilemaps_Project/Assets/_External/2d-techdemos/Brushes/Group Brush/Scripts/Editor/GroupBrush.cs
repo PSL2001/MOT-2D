@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
     [CustomGridBrush(true, false, false, "Group Brush")]
-    public class GroupBrush : GridBrush
+    public class GroupBrush : Tilemaps.GridBrush
     {
         public Vector3Int gap
         {

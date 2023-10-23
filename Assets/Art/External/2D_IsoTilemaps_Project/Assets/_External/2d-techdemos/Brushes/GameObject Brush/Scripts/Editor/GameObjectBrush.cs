@@ -466,8 +466,8 @@ namespace UnityEditor
 	}
 
 	[CustomEditor(typeof(GameObjectBrush))]
-	public class GameObjectBrushEditor : GridBrushEditorBase
-	{
+	public class GameObjectBrushEditor : Tilemaps.GridBrushEditorBase
+    {
 		public GameObjectBrush brush { get { return target as GameObjectBrush; } }
 
 		public override void OnPaintSceneGUI(GridLayout gridLayout, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing)
