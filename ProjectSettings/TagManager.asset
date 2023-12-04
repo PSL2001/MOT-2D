@@ -5,16 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - GameData
+  - PlayerInput
+  - Enemy
+  - Flag
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Minimap
   - Water
   - UI
   - Player
   - Floor
-  - 
+  - Enemies
   - 
   - 
   - 
