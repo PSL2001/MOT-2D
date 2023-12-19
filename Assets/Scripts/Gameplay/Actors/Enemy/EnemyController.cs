@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[ExecuteInEditMode]
 public class EnemiesController : MonoBehaviour, ActorController
 {
+    [Header("Enemy Info")]
+    [SerializeField] public EnemyDataSO enemyData;
+
     public EnemyStats stats;
 
     [Header("Eventos Generales")]
@@ -35,6 +39,7 @@ public class EnemiesController : MonoBehaviour, ActorController
     // Start is called before the first frame update
     void Start()
     {
+        enemyData?.Initialize(this);
         //Me suscribo a los cambios de HP de los stats
         stats.HP.OnIndicatorChange.AddListener(onHPUpdate);
     }
@@ -44,13 +49,12 @@ public class EnemiesController : MonoBehaviour, ActorController
         if (val <= 0) 
         {
             onDie.Invoke();
-            Destroy(gameObject, 1);
+            //Destroy(gameObject, 1);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnRenderObject()
     {
-        
+        enemyData?.Initialize(this);
     }
 }

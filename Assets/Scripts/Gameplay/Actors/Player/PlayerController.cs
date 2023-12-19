@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-
+[ExecuteInEditMode]
 public class PlayerController : MonoBehaviour, ActorController
 {
+    //Player Default info
+    [Header("Player Info")]
+    [SerializeField] public PlayerDataSO playerData;
+
+
     //Referencia a Stats
     [SerializeField] PlayerStats stats;
 
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour, ActorController
     // Start is called before the first frame update
     void Start()
     {
+        playerData?.Initialize(this);
 
         if (GameObject.FindGameObjectWithTag("GameData"))
         {
@@ -36,11 +42,12 @@ public class PlayerController : MonoBehaviour, ActorController
 
     }
 
-    // Update is called once per frame
-    void Update()
+    #region Init Editor
+    private void OnRenderObject()
     {
-        
+        playerData?.Initialize(this);
     }
+    #endregion
 
     private void onHPUpdate(float val)
     {
@@ -68,28 +75,47 @@ public class PlayerController : MonoBehaviour, ActorController
 
     public void OnDamage(float damageAmmount)
     {
+        if(stats.invulnerable) return;
+
         stats.HP.CurrentValue -= damageAmmount;
 
         //Lanzar corutina de invulnerabilidad
-        if (stats.HP.CurrentValue > 0) StartCoroutine(ApplyInvulneravility2D());
+        if (stats.HP.CurrentValue > 0) StartCoroutine(ApplyInvulneravility2D(stats.invulnerabilitySeconds));
     }
 
-    public IEnumerator ApplyInvulneravility2D()
+    public void ApplyTempInvulnerabilityWithotColor2D(float seconds)
+    {
+        StartCoroutine(TemporalInvulnerabilityWithoutColorCoroutine2D(seconds));
+    }
+
+
+    private IEnumerator TemporalInvulnerabilityWithoutColorCoroutine2D(float seconds)
+    {
+        stats.invulnerable = true;
+        yield return new WaitForSecondsRealtime(seconds);
+        stats.invulnerable = false;
+    }
+
+    public IEnumerator ApplyInvulneravility2D(float seconds)
     {
         //1.1 Activar la invulnerabilidad desactivando las capas (Layer)
+        stats.invulnerable = true;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), true);
         //1.2 Hacer cambios en el sprite para que se vea visualmente la invulnerabilidad. Rojo
         Color colorBase = spriteRenderer.color;
 
         spriteRenderer.color = stats.invulnerabilityColor;
         //2. Esperar el tiempo de invulnerabilidad
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(seconds);
         //3.1 Deshacemos los cambios de sprite
         spriteRenderer.color = colorBase;
         //3.2 Deshacemos los cambios de los Layers a su estado original
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
 
-
+        stats.invulnerable = false;
         yield return null;
     }
+
+
+
 }

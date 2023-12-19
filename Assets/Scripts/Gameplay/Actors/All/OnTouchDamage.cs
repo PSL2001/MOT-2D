@@ -11,7 +11,7 @@ public class OnTouchDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
-            float damage = GetComponent<ActorController>().GetStats().Damage;
+            float damage = GetComponent<ActorController>().GetStats().damage;
             collision.gameObject.GetComponent<ActorController>().OnDamage(damage);
             onHit.Invoke();
         }

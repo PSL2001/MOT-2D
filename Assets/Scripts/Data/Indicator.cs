@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Indicator
 {
     //Info
-    public String name;
+    public String indicatorName;
     public Image icon;
 
     //Datos
@@ -86,6 +86,16 @@ public class Indicator
             //if (OnIndicatorChange != null)
             //    OnIndicatorChange(value);
         }
+    }
+
+    public void Update(Indicator newIndicator)
+    {
+        indicatorName = newIndicator.indicatorName;
+        currentValue = newIndicator.currentValue;
+        initValue = newIndicator.initValue;
+        maxValue = newIndicator.maxValue;
+        enableAutoUpdate = newIndicator.enableAutoUpdate;
+        autoUpdateRate = newIndicator.autoUpdateRate;
     }
 
 }
