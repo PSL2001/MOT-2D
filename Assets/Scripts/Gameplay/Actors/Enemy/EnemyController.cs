@@ -41,7 +41,7 @@ public class EnemiesController : MonoBehaviour, ActorController
     {
         enemyData?.Initialize(this);
         //Me suscribo a los cambios de HP de los stats
-        stats.HP.OnIndicatorChange.AddListener(onHPUpdate);
+        stats.HP.onPercentChange.AddListener(onHPUpdate);
     }
 
     private void onHPUpdate(float val)

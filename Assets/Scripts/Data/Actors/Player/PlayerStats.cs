@@ -26,8 +26,8 @@ public class PlayerStats : Stats
         movementSpeed = newStats.movementSpeed;
         acceleration = newStats.acceleration;
 
-        action1Prefab = newStats.action1Prefab;
-        action2Prefab = newStats.action2Prefab;
+        action1 = newStats.action1;
+        action2 = newStats.action2;
 
         airMomentum = newStats.airMomentum;
         jumpSpeed = newStats.jumpSpeed;

@@ -27,4 +27,9 @@ public class UpdateTextUI : MonoBehaviour
         if (enabled) textUI.color = enableColor;
         else textUI.color = disableColor;
     }
+
+    public void UpdateText(float value) 
+    {
+        textUI.SetText(value.ToString()); //Si queremos un parametro se puede pasar en toString
+    }
 }

@@ -25,7 +25,8 @@ public class Indicator
 
     //Eventos para detectar cambios en el indicador. (mas info en https://gamedevbeginner.com/events-and-delegates-in-unity)
     //Opción 1. Unity Event Facil enlazar elementos en el Editor.
-    public UnityEvent<float> OnIndicatorChange;
+    public UnityEvent<float> onPercentChange;
+    public UnityEvent<float> onValueChange;
 
 
     //Opción 2. Delegate. Facil pasar parámetros asociados al evento.
@@ -75,10 +76,12 @@ public class Indicator
             //1. Unity Event
             try
             {
-                OnIndicatorChange.Invoke(GetPercentage());
+                onPercentChange?.Invoke(GetPercentage());
+                onValueChange?.Invoke(currentValue);
             } catch (Exception e)
             {
-                Debug.Log("Ha fallado un evento " + e);
+                Debug.Log("Ha fallado un evento enganchado a Indicator");
+                Debug.Log(e);
             }
             
 

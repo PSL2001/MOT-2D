@@ -14,8 +14,11 @@ public class Stats
     public float movementSpeed;
 
     [Header("Attack")]
-    public GameObject action1Prefab;
-    public GameObject action2Prefab;
+    //DEPRECATED
+    //public GameObject action1Prefab;
+    //public GameObject action2Prefab;
+    public ActionSO action1;
+    public ActionSO action2;
 
     //Metodos
     public void ResetStats()

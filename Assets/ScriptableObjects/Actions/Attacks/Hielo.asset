@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500776f6c42aaa845827e8f78f54b831, type: 3}
+  m_Name: Hielo
+  m_EditorClassIdentifier: 
+  actionName: Hielo
+  cooldown: 1.5
+  damage: 1.5
+  speed: 7
+  type: 1
+  prefab: {fileID: 2346492318177558594, guid: 58af6da2a91a19242a80ded517c7ee48, type: 3}

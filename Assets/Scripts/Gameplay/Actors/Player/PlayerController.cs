@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour, ActorController
         playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
         //Me suscribo a los cambios de HP de los stats
         stats.HP.RestartStats();
-        stats.HP.OnIndicatorChange.AddListener(onHPUpdate);
+        stats.HP.onPercentChange.AddListener(onHPUpdate);
 
     }
 
