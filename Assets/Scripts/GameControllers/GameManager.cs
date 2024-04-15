@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public UnityEvent onWin;
     public UnityEvent onGameOver;
+    public UnityEvent onInit;
+
+    private void Start()
+    {
+        onInit.Invoke();
+    }
 
     public void LevelWin(float seconds = 0)
     {

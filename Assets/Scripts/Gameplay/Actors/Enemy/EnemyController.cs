@@ -57,4 +57,9 @@ public class EnemiesController : MonoBehaviour, ActorController
     {
         enemyData?.Initialize(this);
     }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
 }

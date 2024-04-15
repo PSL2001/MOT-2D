@@ -27,14 +27,6 @@ public class PlayerController : MonoBehaviour, ActorController
     {
         playerData?.Initialize(this);
 
-        if (GameObject.FindGameObjectWithTag("GameData"))
-        {
-            stats = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>().stats;
-        } else
-        {
-            Debug.Log("Error! No se encuentra el objeto con el tag de GameData!!!!!!!!");
-        }
-
         playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
         //Me suscribo a los cambios de HP de los stats
         stats.HP.RestartStats();
@@ -58,6 +50,11 @@ public class PlayerController : MonoBehaviour, ActorController
         }
     }
 
+    public void KillPlayer() 
+    {
+        onDie.Invoke();
+    }
+
     public Stats GetStats()
     {
         return stats;
@@ -70,7 +67,15 @@ public class PlayerController : MonoBehaviour, ActorController
 
     public void OnHealing(float healAmmount)
     {
-        throw new System.NotImplementedException();
+        if (stats.HP.CurrentValue == stats.HP.maxValue) return;
+        if (stats.HP.CurrentValue + healAmmount > stats.HP.maxValue)
+        {
+            stats.HP.CurrentValue = stats.HP.maxValue;
+        } else
+        {
+            stats.HP.CurrentValue += healAmmount;
+        }
+
     }
 
     public void OnDamage(float damageAmmount)

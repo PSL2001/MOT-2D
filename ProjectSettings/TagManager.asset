@@ -9,6 +9,8 @@ TagManager:
   - PlayerInput
   - Enemy
   - Flag
+  - Meta
+  - EnemyRace
   layers:
   - Default
   - TransparentFX

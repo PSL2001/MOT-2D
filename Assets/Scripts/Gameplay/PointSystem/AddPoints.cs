@@ -10,13 +10,14 @@ public class AddPoints : MonoBehaviour
     [SerializeField] [Range(1, 10)] private int points = 1;
 
     //Eventos
+    public UnityEvent<float> addPointEvent;
     public UnityEvent pointCollectEvent;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            ScoreManager.Instance.AddPoints(points); //Evento para ScoreManager
+            addPointEvent?.Invoke(points); //Evento para ScoreManager
             pointCollectEvent.Invoke(); //Evento para Sonido
             Destroy(gameObject); //Destruimos
         }

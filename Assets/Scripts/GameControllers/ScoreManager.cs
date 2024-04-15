@@ -6,32 +6,37 @@ using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
 {
-    [SerializeField] private Indicator score;
-    [SerializeField] private float winningScore = 10;
+    [SerializeField] public Indicator score;
+    //[SerializeField] private float winningScore = 10;
 
-    public UnityEvent onWinningScore;
+    //public UnityEvent onWinningScore;
 
     //Inicialización
     private void Start()
     {
+        if (score == null) Debug.Log("Score Manager should have a FloatVariableSO attached");
         ResetScore();
-       // score.onValueChange.AddListener(CheckWinCondition(score.CurrentValue)); // Alternativa mediante eventos para comprobrar si se ha ganado, comentar la linea 30
+        //score.onValueChange.AddListener(); // Alternativa mediante eventos para comprobrar si se ha ganado, comentar la linea 30
     }
 
     //Actualización
     public void AddPoints(float points) 
     {
         score.CurrentValue += points;
-        CheckWinCondition(score.CurrentValue);
     }
 
-    public void CheckWinCondition(float points)
+    public void QuitPoints(float points)
     {
-        if (points >= winningScore) 
-        {
-            onWinningScore.Invoke();
-        }
+        score.CurrentValue -= points;
     }
+
+    //public void CheckWinCondition(float f)
+    //{
+    //    if (score.CurrentValue >= winningScore) 
+    //    {
+    //        onWinningScore.Invoke();
+    //    }
+    //}
 
     private void ResetScore()
     {

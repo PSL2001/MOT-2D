@@ -323,7 +323,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1354
+  m_InstanceId: 43572
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -456,20 +456,20 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     damage: 5
-    movementSpeed: 2
+    movementSpeed: 4.5
     action1: {fileID: 0}
     action2: {fileID: 0}
     enemyType: 0
   onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5678064644367754685}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-        m_MethodName: SetParent
-        m_Mode: 2
+      - m_Target: {fileID: 1037446320794223117}
+        m_TargetAssemblyTypeName: EnemiesController, Assembly-CSharp
+        m_MethodName: DestroyMe
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -487,10 +487,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1933263847866045143}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7302515679698309507}
+        m_TargetAssemblyTypeName: UnparentMe, Assembly-CSharp
+        m_MethodName: Unparent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1004,8 +1004,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7302515679698309507}
   m_SourcePrefab: {fileID: 100100000, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+--- !u!1 &2022265621116877876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+  m_PrefabInstance: {fileID: 5323393717083918165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7302515679698309507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022265621116877876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765856d680e66674a96cab727469903b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2022265621116877881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6192724089161036652, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}

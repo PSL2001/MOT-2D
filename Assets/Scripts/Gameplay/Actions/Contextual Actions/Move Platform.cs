@@ -35,6 +35,16 @@ public class MovePlatform : MonoBehaviour
         StartCoroutine(MovetoNextPosition());
     }
 
+    public void DeletePosition(int index) 
+    {
+        positions.RemoveAt(index);
+    }
+
+    public void AddPosition(GameObject position) 
+    {
+        positions.Add(position.transform.position);
+    }
+
     private IEnumerator MovetoNextPosition()
     {
         while (transform.position != positions[nextPosition])

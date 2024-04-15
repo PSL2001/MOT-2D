@@ -12,6 +12,11 @@ public class LevelManager : MonoBehaviourSingleton<LevelManager>
         SceneManager.LoadScene(0);
     }
 
+    public string GetLevelName() 
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
     public void RestartLevel() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

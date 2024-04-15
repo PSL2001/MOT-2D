@@ -71,19 +71,25 @@ public class Indicator
         get => currentValue;
         set
         {
-            currentValue = Mathf.Clamp(value, 0.0f, maxValue);
-
-            //1. Unity Event
-            try
-            {
-                onPercentChange?.Invoke(GetPercentage());
-                onValueChange?.Invoke(currentValue);
-            } catch (Exception e)
-            {
-                Debug.Log("Ha fallado un evento enganchado a Indicator");
-                Debug.Log(e);
-            }
+            float newValue = Mathf.Clamp(value, 0.0f, maxValue);
             
+            if(newValue != currentValue)
+            {
+                currentValue = newValue;
+                //1. Unity Event
+                try
+                {
+                    onPercentChange?.Invoke(GetPercentage());
+                    onValueChange?.Invoke(currentValue);
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Ha fallado un evento enganchado a Indicator");
+                    Debug.Log(e);
+                }
+
+            }
+
 
             //2. Delegate
             //if (OnIndicatorChange != null)

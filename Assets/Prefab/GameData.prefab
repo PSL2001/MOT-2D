@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186764493257878111}
-  - component: {fileID: 7862803652143644698}
+  - component: {fileID: 215824608292734329}
+  - component: {fileID: 6032365699324532070}
   m_Layer: 0
   m_Name: GameData
   m_TagString: GameData
@@ -32,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7862803652143644698
+--- !u!114 &215824608292734329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +42,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 907092673098706484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db4cbbbba6280fb40938a2e89c0bed20, type: 3}
+  m_Script: {fileID: 11500000, guid: 924a75721296bd049ac124f7eac08b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
+  gameData:
+    currentSceneName: 
+    deathCount: 0
+--- !u!114 &6032365699324532070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907092673098706484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae843911b6fcc43a7301f66961e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7b992e2181b183743b4731b043eff834, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 215824608292734329}
+        m_TargetAssemblyTypeName: GameDataManager, Assembly-CSharp
+        m_MethodName: AddDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

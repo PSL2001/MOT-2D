@@ -24,9 +24,14 @@ MonoBehaviour:
       initValue: 10
       enableAutoUpdate: 1
       autoUpdateRate: 0
-      OnIndicatorChange:
+      onPercentChange:
+        m_PersistentCalls:
+          m_Calls: []
+      onValueChange:
         m_PersistentCalls:
           m_Calls: []
     damage: 5
-    movementSpeed: 2
+    movementSpeed: 4.5
+    action1: {fileID: 0}
+    action2: {fileID: 0}
     enemyType: 0
